@@ -11,7 +11,6 @@ function App() {
 
   // Intersection Observer for scroll-reveal animations and active section tracking
   useEffect(() => {
-    // 1. Scroll-reveal observer
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,7 +24,6 @@ function App() {
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
     
-    // 2. Active section observer
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
