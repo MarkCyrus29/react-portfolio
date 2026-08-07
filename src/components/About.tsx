@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section id="about" className="relative py-28 ">
+    <section id="about" className="relative min-h-svh flex justify-center items-center ">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-cream/10 to-transparent" />
 
       <div className="mx-auto max-w-3xl px-6">

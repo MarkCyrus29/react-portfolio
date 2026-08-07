@@ -1,3 +1,5 @@
+import { ArrowUpRight } from 'lucide-react';
+
 const projects = [
   {
     title: "Marshall's Tailoring",
@@ -27,7 +29,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-28">
+    <section id="projects" className="relative py-32">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-cream/10 to-transparent" />
 
       <div className="mx-auto max-w-5xl px-6">
@@ -57,15 +59,7 @@ export default function Projects() {
               <div className="flex-1">
                 <h3 className="text-2xl md:text-3xl font-semibold text-cream/90 mb-3 group-hover:text-cream transition-colors duration-300 flex items-center">
                   {project.title}
-                  <svg
-                    className="w-5 h-5 ml-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
-                  </svg>
+                  <ArrowUpRight className="w-5 h-5 ml-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                 </h3>
 
                 <p className="text-muted text-sm md:text-base leading-relaxed mb-4 md:w-4/5">

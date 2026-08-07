@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,9 +7,7 @@ import Contact from './components/Contact'
 
 
 function App() {
-  const [activeSection, setActiveSection] = useState('hero')
-
-  // Intersection Observer for scroll-reveal animations and active section tracking
+  const audioRef = useRef<HTMLAudioElement>(null)
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -24,38 +22,37 @@ function App() {
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
     
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: '-50% 0px -50% 0px' }
-    )
-
-    document.querySelectorAll('section').forEach((el) => sectionObserver.observe(el))
-
     return () => {
       revealObserver.disconnect()
-      sectionObserver.disconnect()
     }
   }, [])
 
-  const show8Ball = activeSection === 'about' || activeSection === 'projects'
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.05
+      if (audioRef.current.paused) {
+        audioRef.current.play()
+      } else {
+        audioRef.current.pause()
+      }
+    }
+  }
 
   return (
     <div className="grain-overlay">
-      <img 
-        src="/8ball.png" 
-        alt="Decorative spinning 8-ball" 
-        className={`fixed top-6 right-6 md:top-10 md:right-10 w-16 h-16 md:w-20 md:h-20 z-50 pointer-events-none animate-spin-slow transition-opacity duration-500 ${
-          show8Ball ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
+      <audio ref={audioRef} src="/change.mp3" preload="auto" />
+      <div 
+        className="fixed top-6 right-6 md:top-10 md:right-10 w-16 h-16 md:w-20 md:h-20 z-30 cursor-pointer hover:scale-110 transition-transform duration-300"
+        onClick={toggleAudio}
+      >
+        <img 
+          src="/8ball.png" 
+          alt="Interactive spinning orb" 
+          className="w-full h-full animate-spin-slow"
+        />
+      </div>
       <Navbar />
-      <main className="relative z-10">
+      <main className="relative">
         <Hero />
         <About />
         <Projects />

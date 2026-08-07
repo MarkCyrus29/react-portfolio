@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-screen w-full overflow-hidden "
+      className="relative z-40 bg-black h-screen w-full overflow-hidden "
     >
       <img
         src="/hero.png"

@@ -1,3 +1,5 @@
+import { Mail, ArrowRight } from 'lucide-react';
+
 const contacts = [
   {
     id: 'github-link',
@@ -27,16 +29,14 @@ const contacts = [
     displayText: 'hi@markcyruss.com',
     href: 'mailto:hi@markcyruss.com',
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-      </svg>
+      <Mail className="w-5 h-5" />
     ),
   },
 ]
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative h-screen w-full overflow-hidden">
+    <section id="contact" className="relative z-40 bg-black h-screen w-full overflow-hidden">
       <img
         src="/change.jpg"
         alt="DJO — change single cover art"
@@ -58,7 +58,7 @@ export default function Contact() {
             </h2>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col border-t border-border/30">
             {contacts.map((contact) => (
               <a
                 key={contact.id}
@@ -66,30 +66,23 @@ export default function Contact() {
                 href={contact.href}
                 target={contact.href.startsWith('mailto') ? undefined : '_blank'}
                 rel={contact.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className="flex items-center gap-4 px-6 py-5 rounded-2xl border border-cream/10 bg-black/30 backdrop-blur-sm hover:border-cream/25 hover:bg-black/40 transition-all duration-300 group"
+                className="group flex items-center justify-between py-6 border-b border-border/30  transition-colors duration-300"
               >
-                <div className="w-10 h-10 rounded-full border border-cream/15 flex items-center justify-center text-cream/60 group-hover:text-accent group-hover:border-accent/30 transition-all duration-300">
-                  {contact.icon}
+                <div className="flex items-center gap-6">
+                  <div className="text-muted group-hover:text-cream transition-colors duration-300">
+                    {contact.icon}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-medium tracking-[0.2em] uppercase text-muted mb-1">
+                      {contact.label}
+                    </span>
+                    <span className="text-base font-medium text-cream/90 group-hover:text-cream transition-colors duration-300">
+                      {contact.displayText}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium tracking-widest uppercase text-cream/40 mb-0.5">
-                    {contact.label}
-                  </p>
-                  <p className="text-sm font-medium text-cream truncate group-hover:text-accent transition-colors duration-300">
-                    {contact.displayText}
-                  </p>
-                </div>
-
-                <svg
-                  className="w-4 h-4 text-cream/20 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
+                <ArrowRight className="w-5 h-5 text-red! opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
               </a>
             ))}
           </div>
